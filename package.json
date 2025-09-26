@@ -1,0 +1,17 @@
+{
+  "name": "@makechart/dumbbell",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "zbryikt",
+  "license": "MIT",
+  "dependencies": {
+    "@plotdb/srcbuild": "^0.0.69",
+    "fedep": "^1.4.3",
+    "livescript": "^1.6.0"
+  }
+}

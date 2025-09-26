@@ -1,0 +1,34 @@
+div
+  div(plug="layout")
+    .pdl-layout
+      div(data-type="layout")
+        .pdl-cell(data-name="yaxis") &nbsp;
+        .pdl-cell(data-name="view")
+        .pdl-cell
+        .pdl-cell(data-name="xaxis") &nbsp;
+        .pdl-cell(data-name="legend") &nbsp;
+      div(data-type="render")
+
+  style(type="text/css"): :stylus
+    [data-name=xaxis] { font-size: 0.8em }
+    [data-name=yaxis] { font-size: 0.8em }
+    .pdl-layout > div[data-type=layout]
+      display: grid
+      grid-template-columns: fit-content(2em) 1fr fit-content(10em)
+      grid-template-rows: 1fr fit-content(1em)
+      /* 0.5em for axis label at the boundary */
+      padding: 0 0.5em
+      & > .pdl-cell[data-name=legend]
+        grid-column: 3
+        grid-row: 1 / span 2
+        padding-left: 1em
+
+    .pdl-layout.legend-below > div[data-type=layout]
+      grid-template-columns: 2em 1fr
+      grid-template-rows: 1fr fit-content(2em) fit-content(3em)
+      .pdl-cell[data-name=legend]
+        padding-top: 1em
+        grid-column: 1 / span 2
+        grid-row: 3
+
+  script(type="@plotdb/block"): include:lsc index.ls
