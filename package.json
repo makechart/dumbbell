@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@plotdb/srcbuild": "^0.0.69",
-    "fedep": "^1.4.3",
+    "fedep": "^1.4.5",
     "livescript": "^1.6.0"
   }
 }
