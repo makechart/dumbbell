@@ -17,6 +17,6 @@
     "livescript": "^1.6.0"
   },
   "devDependencies": {
-    "@makechart/viewer": "^0.0.3"
+    "@makechart/viewer": "^0.0.4"
   }
 }
