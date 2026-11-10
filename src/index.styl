@@ -1,0 +1,26 @@
+[data-name=xaxis] { font-size: 0.8em }
+[data-name=yaxis] { font-size: 0.8em }
+.pdl-layout > div[data-type=layout]
+  display: grid
+  grid-template-columns: fit-content(2em) 1fr fit-content(10em)
+  grid-template-rows: 1fr fit-content(1em)
+  /* 0.5em for axis label at the boundary */
+  padding: 0.4em 0.5em 0
+  & > .pdl-cell[data-name=legend]
+    grid-column: 3
+    grid-row: 1 / span 2
+    padding-left: 1em
+
+/* 第一欄要讓類別軸撐開 ( 長名字 ), 不能像 bar 那樣寫死 */
+.pdl-layout.legend-bottom > div[data-type=layout]
+  grid-template-columns: fit-content(2em) 1fr
+  grid-template-rows: 1fr fit-content(2em) fit-content(3em)
+  .pdl-cell[data-name=legend]
+    padding-top: .75em
+    padding-left: 0
+    grid-column: 1 / span 2
+    grid-row: 3
+
+/* hover 時整列淡淡地亮起來. css 蓋過 fill-opacity 屬性, 補間照跑 */
+.row:hover > .stripe
+  fill-opacity: .07
