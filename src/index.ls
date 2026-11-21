@@ -350,59 +350,59 @@ mod = ({context, t}) ->
     c.value-axis.baseline.show.default = false
     c.value-axis <<<
       # 點的位置才是編碼, 不像長條的長度必須從 0 算起, 所以預設不含 0
-      include-zero: type: \boolean, default: false
+      include-zero: type: \boolean, default: false, desc: {en: "stretch the value axis so it always includes 0", "zh-TW": "延伸數值軸，讓它一定包含 0"}
     # 水平時一列一個名字, 字高剛好放得下就該顯示, 不要因為留白被抽掉
     c.category-axis.label.gap.default = 0.1
     c.category-axis.tick.inner.default = 0
     c.category-axis.baseline.show.default = false
     c.category-axis.caption.show.default = false
     c.category-axis <<<
-      max-label-width: type: \number, default: 30, min: 5, max: 80, step: 1
+      max-label-width: type: \number, default: 30, min: 5, max: 80, step: 1, desc: {en: "longest a row name may be before it is cut off with an ellipsis, as a percent of the chart size ( % )", "zh-TW": "列名稱的最大長度，超過的以刪節號截斷，以圖表大小的百分比表示 ( % )"}
 
     c <<<
-      orientation: type: \choice, values: <[horizontal vertical]>, default: \horizontal
+      orientation: type: \choice, values: <[horizontal vertical]>, default: \horizontal, desc: {en: "horizontal puts one row per name down the chart with values along the x axis; vertical turns it into columns", "zh-TW": "horizontal 每個名稱一列由上往下排，數值沿 X 軸；vertical 改成直向的一欄一欄"}
       sort:
-        field: type: \choice, values: <[none start end diff abs name]>, default: \none
-        dir: type: \choice, values: <[asc desc]>, default: \desc
+        field: type: \choice, values: <[none start end diff abs name]>, default: \none, desc: {en: "what to sort rows by: start or end value, diff ( end minus start ), abs ( size of the difference ), name, or none for the data order; rows with missing values go last", "zh-TW": "列依什麼排序：start 起點、end 終點、diff 差值 ( 終點減起點 )、abs 差值的絕對值、name 名稱，none 照資料原本的順序；缺值的列排在最後"}
+        dir: type: \choice, values: <[asc desc]>, default: \desc, desc: {en: "sort direction: asc puts the smallest first, desc the largest first", "zh-TW": "排序方向：asc 由小到大，desc 由大到小"}
       dot:
-        size: type: \number, default: 6, min: 1, max: 30, step: 0.5
-        style: type: \choice, values: <[fill hollow]>, default: \fill
-        start-color: auto!
-        end-color: auto!
-        stroke: auto!
-        stroke-width: type: \number, default: 0, min: 0, max: 10, step: 0.5
+        size: type: \number, default: 6, min: 1, max: 30, step: 0.5, desc: {en: "radius of the end dots, shrunk to fit when rows are tight ( px )", "zh-TW": "端點的半徑，列太窄時會自動縮小 ( px )"}
+        style: type: \choice, values: <[fill hollow]>, default: \fill, desc: {en: "fill draws solid dots, hollow draws rings", "zh-TW": "fill 畫實心圓點，hollow 畫空心圓圈"}
+        start-color: auto! <<< {desc: {en: "color of the start dots; auto uses the first palette color", "zh-TW": "起點的顏色；自動時使用配色的第一個顏色"}}
+        end-color: auto! <<< {desc: {en: "color of the end dots; auto uses the second palette color", "zh-TW": "終點的顏色；自動時使用配色的第二個顏色"}}
+        stroke: auto! <<< {desc: {en: "outline color of solid dots; auto uses the dot's own color ( hollow dots always do )", "zh-TW": "實心端點的外框顏色；自動時使用端點本身的顏色 ( 空心端點一律如此 )"}}
+        stroke-width: type: \number, default: 0, min: 0, max: 10, step: 0.5, desc: {en: "thickness of the dot outlines; hollow dots use 2 when this is 0 ( px )", "zh-TW": "端點外框粗細；空心端點設為 0 時以 2 計 ( px )"}
       line:
-        width: type: \number, default: 2, min: 0.5, max: 20, step: 0.5
-        mode: type: \choice, values: <[single delta gradient]>, default: \single
-        color: type: \color, default: \#8c96a3
-        increase-color: type: \color, default: \#1480d8
-        decrease-color: type: \color, default: \#e8760a
-        opacity: type: \number, default: 0.7, min: 0, max: 1, step: 0.05
+        width: type: \number, default: 2, min: 0.5, max: 20, step: 0.5, desc: {en: "thickness of the connecting line, thinned when the dots are shrunk ( px )", "zh-TW": "連接線的粗細，端點被縮小時也會跟著變細 ( px )"}
+        mode: type: \choice, values: <[single delta gradient]>, default: \single, desc: {en: "how the connecting line is colored: single uses one color, delta colors it by whether the value went up or down, gradient blends from the start color to the end color", "zh-TW": "連接線的配色：single 單一顏色，delta 依數值增加或減少上色，gradient 從起點顏色漸層到終點顏色"}
+        color: type: \color, default: \#8c96a3, desc: {en: "color of the connecting line in single mode, and for rows with no change in delta mode", "zh-TW": "single 模式下連接線的顏色，delta 模式下沒有變化的列也用這個顏色"}
+        increase-color: type: \color, default: \#1480d8, desc: {en: "line color for rows where end is above start ( delta mode ), also used by auto difference labels", "zh-TW": "終點大於起點的列的線條顏色 ( delta 模式 )，差值標籤設為自動時也用這個顏色"}
+        decrease-color: type: \color, default: \#e8760a, desc: {en: "line color for rows where end is below start ( delta mode ), also used by auto difference labels", "zh-TW": "終點小於起點的列的線條顏色 ( delta 模式 )，差值標籤設為自動時也用這個顏色"}
+        opacity: type: \number, default: 0.7, min: 0, max: 1, step: 0.05, desc: {en: "opacity of the connecting lines ( 0 to 1 )", "zh-TW": "連接線的不透明度 ( 0 到 1 )"}
       label:
-        show: type: \boolean, default: true
-        format: type: \format, default: \.3~s
-        position: type: \choice, values: <[outside side]>, default: \outside
-        color: auto \currentColor
+        show: type: \boolean, default: true, desc: {en: "show the start and end values next to the dots", "zh-TW": "在端點旁顯示起點與終點的數值"}
+        format: type: \format, default: \.3~s, desc: {en: "number format of the value labels, e.g. .3~s ( d3-format )", "zh-TW": "數值標籤的格式，例如 .3~s ( d3-format )"}
+        position: type: \choice, values: <[outside side]>, default: \outside, desc: {en: "outside puts each value past its end of the dumbbell, side puts it next to the dot across the row ( above or below when horizontal )", "zh-TW": "outside 把數值放在啞鈴兩端的外側，side 放在端點旁、跨列的方向 ( 水平時在上方或下方 )"}
+        color: (auto \currentColor) <<< {desc: {en: "color of the value labels; auto uses the color of the dot they belong to", "zh-TW": "數值標籤的顏色；自動時使用所屬端點的顏色"}}
         font: font!
       delta:
-        show: type: \boolean, default: false
-        format: type: \format, default: \+.3~s
-        position: type: \choice, values: <[middle column]>, default: \middle
-        color: auto!
+        show: type: \boolean, default: false, desc: {en: "show the difference ( end minus start ) on each row", "zh-TW": "在每一列顯示差值 ( 終點減起點 )"}
+        format: type: \format, default: \+.3~s, desc: {en: "number format of the difference labels, e.g. +.3~s ( d3-format )", "zh-TW": "差值標籤的格式，例如 +.3~s ( d3-format )"}
+        position: type: \choice, values: <[middle column]>, default: \middle, desc: {en: "middle puts the difference next to the connecting line, column lines them up in a column at the end of the rows", "zh-TW": "middle 把差值放在連接線旁，column 排成一欄放在每列的尾端"}
+        color: auto! <<< {desc: {en: "color of the difference labels; auto uses the increase or decrease color", "zh-TW": "差值標籤的顏色；自動時使用增加或減少的顏色"}}
         font: font!
       row:
-        padding: type: \number, default: 0.3, min: 0, max: 0.9, step: 0.05
-        stripe: type: \boolean, default: false
+        padding: type: \number, default: 0.3, min: 0, max: 0.9, step: 0.05, desc: {en: "space between rows, as a fraction of each row's slot ( 0 to 0.9 )", "zh-TW": "列與列之間的間距，以每列所佔寬度的比例表示 ( 0 到 0.9 )"}
+        stripe: type: \boolean, default: false, desc: {en: "shade every other row", "zh-TW": "每隔一列加上淺色底"}
       grid:
-        value: type: \boolean, default: true
-        category: type: \boolean, default: false
+        value: type: \boolean, default: true, desc: {en: "draw grid lines at the value axis ticks", "zh-TW": "在數值軸的刻度畫格線"}
+        category: type: \boolean, default: false, desc: {en: "draw a guide line along each row", "zh-TW": "沿著每一列畫一條導引線"}
         color: type: \color, default: \currentColor
-        opacity: type: \number, default: 0.12, min: 0, max: 1, step: 0.01
-        dash: type: \number, default: 0, min: 0, max: 20, step: 1
+        opacity: type: \number, default: 0.12, min: 0, max: 1, step: 0.01, desc: {en: "opacity of the grid lines ( 0 to 1 )", "zh-TW": "格線的不透明度 ( 0 到 1 )"}
+        dash: type: \number, default: 0, min: 0, max: 20, step: 1, desc: {en: "dash length of the grid lines; 0 draws solid lines ( px )", "zh-TW": "格線的虛線長度；0 表示實線 ( px )"}
       animation:
-        enabled: type: \boolean, default: true
-        duration: type: \number, default: 350, min: 0, max: 3000, step: 50
-        stagger: type: \number, default: 0, min: 0, max: 200, step: 5
+        enabled: type: \boolean, default: true, desc: {en: "animate changes; off jumps straight to the new state", "zh-TW": "變化時播放動畫；關掉時直接跳到新的狀態"}
+        duration: type: \number, default: 350, min: 0, max: 3000, step: 50, desc: {en: "length of the transitions ( ms )", "zh-TW": "動畫的時間長度 ( 毫秒 )"}
+        stagger: type: \number, default: 0, min: 0, max: 200, step: 5, desc: {en: "extra delay for each next row, so rows move one after another ( ms )", "zh-TW": "每往下一列多延遲的時間，讓各列依序動起來 ( 毫秒 )"}
     c
 
   dimension:
