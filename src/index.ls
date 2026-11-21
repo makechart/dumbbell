@@ -405,6 +405,18 @@ mod = ({context, t}) ->
         stagger: type: \number, default: 0, min: 0, max: 200, step: 5, desc: {en: "extra delay for each next row, so rows move one after another ( ms )", "zh-TW": "每往下一列多延遲的時間，讓各列依序動起來 ( 毫秒 )"}
     c
 
+  # 段落 ( tab ) 的說明, key 是段落的路徑. preset 的段落由 chart.utils.config.tabinfo 掛上來, 共用的 common 與各處的 font 段落由核心補
+  tabinfo: chart.utils.config.tabinfo({legend: \legend, tip: \tip, valueAxis: \axis, categoryAxis: \axis}) <<<
+    valueAxis: desc: {en: "the axis of the values: line, ticks, labels and title", "zh-TW": "數值軸：軸線、刻度、標籤與軸標題"}
+    categoryAxis: desc: {en: "the axis of the row names: line, ticks, labels and title", "zh-TW": "名稱軸 ( 每列的名稱 )：軸線、刻度、標籤與軸標題"}
+    sort: desc: {en: "the order of the rows", "zh-TW": "列的排列順序"}
+    dot: desc: {en: "the dots at the start and end of each row", "zh-TW": "每列起點與終點的圓點"}
+    line: desc: {en: "the line connecting the start and end dots, and how it is colored", "zh-TW": "連接起點與終點的線條，以及它的配色"}
+    label: desc: {en: "the start and end values written next to the dots", "zh-TW": "寫在端點旁的起點與終點數值"}
+    delta: desc: {en: "the difference ( end minus start ) written on each row", "zh-TW": "寫在每列上的差值 ( 終點減起點 )"}
+    row: desc: {en: "spacing between rows, and shading every other row", "zh-TW": "列與列的間距，以及隔列加底色"}
+    grid: desc: {en: "grid lines at the value axis ticks, and guide lines along the rows", "zh-TW": "數值軸刻度的格線，以及沿著每列的導引線"}
+    animation: desc: {en: "transitions when the data or settings change", "zh-TW": "資料或設定變動時的轉場動畫"}
   dimension:
     start: {type: \R, name: "start"}
     end: {type: \R, name: "end"}
