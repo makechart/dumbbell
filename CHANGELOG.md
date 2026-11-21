@@ -1,5 +1,10 @@
 # Change Logs
 
+## v0.0.4
+
+ - add `desc` ( en / zh-TW ) to the config items, shown under the label in the makechart style panel
+
+
 ## v0.0.3
 
  - rewrite as a real dumbbell chart: one category axis, one value axis, two points per row joined by a connector.
